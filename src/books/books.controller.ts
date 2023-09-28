@@ -1,8 +1,10 @@
-import { Controller, Post, Body, Get, Put, Delete,Param, ParseIntPipe} from '@nestjs/common';
+import { Controller, Post, Body, Get, Put, Delete,Param, ParseIntPipe, UseGuards} from '@nestjs/common';
 import { BooksService } from './books.service';
 import { Book } from './books.entity/books.entity';
+import { BookGuard } from './book.guard';
 
 @Controller('books')
+@UseGuards(new BookGuard)//this decorater is in root level for this page so it will be aplicable on whole controller of this pages
 export class BooksController {
 
     constructor(private service: BooksService) { }
